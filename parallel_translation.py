@@ -1,6 +1,7 @@
 __author__ = 'rupy'
 
 import csv
+import os
 
 # parallel translation (Jaoanese & English) file is needed in this program
 
@@ -11,6 +12,13 @@ class ParallelTranslation():
 
 
     def read_csv_and_save_as_txt(self):
+
+        # directories existence check
+        if not os.path.isdir('english'):
+            os.mkdir('english')
+        if not os.path.isdir('japanese'):
+            os.mkdir('japanese')
+
         reader = csv.reader(open(self.translation_path, 'r'))
         for i, row in enumerate(reader):
 
