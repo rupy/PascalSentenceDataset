@@ -17,7 +17,7 @@ class PascalSentenceDataSet():
         self.url = url
 
     def download_images(self):
-        dom = pq(url)
+        dom = pq(self.url)
         for img in dom('img').items():
             img_src = img.attr['src']
             category, img_file_name = os.path.split(img_src)
@@ -43,7 +43,7 @@ class PascalSentenceDataSet():
                 f.write(raw)
 
     def download_sentences(self):
-        dom = pq(url)
+        dom = pq(self.url)
         # tbody disappears in pyquery DOM
         for tr in dom('body>table>tr').items():
             img_src = tr('img').attr['src']
