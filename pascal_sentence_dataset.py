@@ -2,9 +2,9 @@
 
 from urlparse import urljoin
 from pyquery import PyQuery as pq
-from pprint import pprint
 import os
 import requests
+import csv
 
 __author__ = 'rupy'
 
@@ -66,9 +66,18 @@ class PascalSentenceDataSet():
                 for td in tr('table tr td').items():
                     f.write(td.text() + "\n")
 
+    def create_correspondence_data(self):
+        dom = pq(self.url)
+        writer = csv.writer(open('correspondence.csv', 'wb'))
+        for i, img in enumerate(dom('img').items()):
+            img_src = img.attr['src']
+            print "%d => %s" % (i + 1, img_src)
+            writer.writerow([i + 1, img_src])
+
 if __name__=="__main__":
 
     url = "http://vision.cs.uiuc.edu/pascal-sentences/"
     dataset = PascalSentenceDataSet(url)
     # dataset.download_images()
-    dataset.download_sentences()
+    # dataset.download_sentences()
+    dataset.create_correspondence_data()
