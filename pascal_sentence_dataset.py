@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+#!/usr/bin/python
+#-*- coding: utf-8 -*-
 
 from urlparse import urljoin
 from pyquery import PyQuery as pq
@@ -39,8 +40,16 @@ class PascalSentenceDataSet():
                 continue
             print "Downloading: %s" % output
             with open(output,'wb') as f:
-                raw = requests.get(img_url).content
-                f.write(raw)
+
+                while True:
+                    result = requests.get(img_url)
+                    raw = result.content
+                    if result.status_code == 200:
+                        f.write(raw)
+                        break
+                    print "error occurred while fetching img"
+                    print "retry..."
+
 
     def download_sentences(self):
         dom = pq(self.url)
@@ -78,6 +87,6 @@ if __name__=="__main__":
 
     url = "http://vision.cs.uiuc.edu/pascal-sentences/"
     dataset = PascalSentenceDataSet(url)
-    # dataset.download_images()
+    dataset.download_images()
     # dataset.download_sentences()
-    dataset.create_correspondence_data()
+    # dataset.create_correspondence_data()
