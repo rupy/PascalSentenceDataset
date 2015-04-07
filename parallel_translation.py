@@ -1,7 +1,13 @@
+#!/usr/bin/python
+#-*- coding: utf-8 -*-
+
 __author__ = 'rupy'
 
 import csv
 import os
+import MeCab
+from urlparse import urljoin
+
 
 # parallel translation (Jaoanese & English) file is needed in this program
 
@@ -38,8 +44,28 @@ class ParallelTranslation():
             with open(output_jp, 'w') as f:
                 f.write(row[1])
 
+    def wakachi(self):
+
+        # directories existence check
+        if not os.path.isdir('wakati'):
+            os.mkdir('wakati')
+
+        files = os.listdir('japanese')
+        for file in files:
+            with open('japanese/' + file) as f:
+                txt = f.read()
+
+                tagger = MeCab.Tagger("-Owakati")
+                wakati_result = tagger.parse(txt)
+
+                output_wak = urljoin('wakati/', file)
+                print "Saving: %s" % output_wak
+                with open(output_wak, 'w') as f:
+                    f.write(wakati_result)
+
 if __name__=="__main__":
 
     csv_file = 'parallel_translation/pascal_sentence_numbers.csv'
     ps = ParallelTranslation(csv_file)
-    ps.read_csv_and_save_as_txt()
+    # ps.read_csv_and_save_as_txt()
+    ps.wakachi()
