@@ -11,7 +11,7 @@ import re
 
 # parallel translation (Jaoanese & English) file is needed in this program
 
-class ParallelTranslation():
+class Translation():
 
     def __init__(self, csv_file_path):
         self.translation_path = csv_file_path
@@ -111,8 +111,8 @@ class ParallelTranslation():
 
 if __name__=="__main__":
 
-    csv_file = 'parallel_translation/pascal_sentence_numbers.csv'
-    ps = ParallelTranslation(csv_file)
+    csv_file = 'translations/pascal_sentence_numbers.csv'
+    ps = Translation(csv_file)
     # ps.read_csv_and_save_as_txt()
     # ps.wakati()
     ps.line_wakati()
