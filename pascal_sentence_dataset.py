@@ -2,7 +2,7 @@
 #-*- coding: utf-8 -*-
 
 from urlparse import urljoin
-from pyquery import PyQuery as pq
+from pyquery import PyQuery
 import os
 import requests
 import csv
@@ -18,7 +18,7 @@ class PascalSentenceDataSet():
         self.url = url
 
     def download_images(self):
-        dom = pq(self.url)
+        dom = PyQuery(self.url)
         for img in dom('img').items():
             img_src = img.attr['src']
             category, img_file_name = os.path.split(img_src)
@@ -52,7 +52,7 @@ class PascalSentenceDataSet():
 
 
     def download_sentences(self):
-        dom = pq(self.url)
+        dom = PyQuery(self.url)
         # tbody disappears in pyquery DOM
         for tr in dom('body>table>tr').items():
             img_src = tr('img').attr['src']
@@ -76,7 +76,7 @@ class PascalSentenceDataSet():
                     f.write(td.text() + "\n")
 
     def create_correspondence_data(self):
-        dom = pq(self.url)
+        dom = PyQuery(self.url)
         writer = csv.writer(open('correspondence.csv', 'wb'))
         for i, img in enumerate(dom('img').items()):
             img_src = img.attr['src']
