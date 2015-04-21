@@ -55,16 +55,16 @@ class Translation():
             with open(output_jp, 'w') as f:
                 f.write(jp_txt_fixed)
 
-    def line_wakati(self):
+    def wakati(self):
 
         # directories existence check
-        if not os.path.isdir('line_wakati'):
-            os.mkdir('line_wakati')
+        if not os.path.isdir('wakati'):
+            os.mkdir('wakati')
 
         files = os.listdir('japanese')
         for file in files:
             with open('japanese/' + file) as f1:
-                output_wak = urljoin('line_wakati/', file)
+                output_wak = urljoin('wakati/', file)
                 with open(output_wak, 'w') as f2:
                     for txt in f1.readlines():
 
@@ -77,7 +77,11 @@ class Translation():
 
 if __name__=="__main__":
 
+    # put parallel translation data somewhere in advance
     csv_file = 'translations/pascal_sentence_numbers.csv'
+    # initialize instance
     ps = Translation(csv_file)
+    # create text data from csv file
     ps.read_csv_and_save_as_txt()
-    ps.line_wakati()
+    # create wakati-gaki text data (Japanese text data separated by space between each word) retaining line break
+    ps.wakati()

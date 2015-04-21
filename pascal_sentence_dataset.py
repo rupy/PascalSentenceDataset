@@ -86,7 +86,11 @@ class PascalSentenceDataSet():
 
 if __name__=="__main__":
 
+    # create instance
     dataset = PascalSentenceDataSet()
+    # download images
     dataset.download_images()
-    # dataset.download_sentences()
-    # dataset.create_correspondence_data()
+    # download sentences
+    dataset.download_sentences()
+    # create correspondence data by dataset
+    dataset.create_correspondence_data()
