@@ -51,7 +51,7 @@ Translation class is the utility to use parallel translation data, "pascal_sente
 # import
 from translation import Translation
 
-# put parallel translation data somewhere
+# put parallel translation data somewhere in advance
 csv_file = 'translations/pascal_sentence_numbers.csv'
 # initialize instance
 ps = Translation(csv_file)
