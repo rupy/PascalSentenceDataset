@@ -1,5 +1,7 @@
 # PascalSentenceDataset
 
+This program is utility to download pascal sentence dataset.
+
 ## Instalation
 
 You can install by "git clone" command
@@ -10,11 +12,15 @@ git clone https://github.com/rupy/PascalSentenceDataset.git
 
 ### Dependency
 
+You must install some python libraries. Use pip command.
+
 ```
 pyquery 1.2.9
 mecab-python 0.996
 requests 2.6.0
 ```
+
+To use mecab-python, you have to install MeCab in addition.
 
 ## Usage
 
