@@ -16,11 +16,8 @@ You must install some python libraries. Use pip command.
 
 ```
 pyquery 1.2.9
-mecab-python 0.996
 requests 2.6.0
 ```
-
-To use mecab-python, you have to install MeCab in addition.
 
 ## Usage
 
@@ -41,11 +38,23 @@ dataset.create_correspondence_data()
 
 That's it!
 
-## Information for Nakayama lab members
+## Additional information for Nakayama lab members
 
-Our lab created Japanese translation of Pascal Sentence.
+Our lab created Japanese translation of Pascal Sentence Dataset.
 
 Translation class is the utility to use parallel translation data, "pascal_sentence_numbers.csv".
+
+You can get text files of two languages by the class.
+
+To use the class, you have to install depencency libraries as follow:
+
+```
+mecab-python 0.996
+```
+
+To use mecab-python, you have to install MeCab in addition.
+
+### Code Sample
 
 ```python
 # import
