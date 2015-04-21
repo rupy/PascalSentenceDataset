@@ -38,6 +38,8 @@ dataset.create_correspondence_data()
 
 That's it!
 
+Correspondence data is the csv data to correspond data id to image data.
+
 ## Additional information for Nakayama lab members
 
 Our lab created Japanese translation of Pascal Sentence Dataset.
