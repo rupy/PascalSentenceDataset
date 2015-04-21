@@ -41,11 +41,8 @@ That's it!
 ## Additional information for Nakayama lab members
 
 Our lab created Japanese translation of Pascal Sentence Dataset.
-
 Translation class is the utility to use parallel translation data, "pascal_sentence_numbers.csv".
-
 You can get text files of two languages by the class.
-
 To use the class, you have to install depencency libraries as follow:
 
 ```
