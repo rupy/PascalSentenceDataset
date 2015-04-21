@@ -35,7 +35,7 @@ dataset = PascalSentenceDataSet()
 dataset.download_images()
 # download sentences
 dataset.download_sentences()
-# create coresoindence data by dataset
+# create correspondence data by dataset
 dataset.create_correspondence_data()
 ```
 
