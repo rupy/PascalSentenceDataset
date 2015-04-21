@@ -21,7 +21,14 @@ requests 2.6.0
 
 ## Usage
 
-To download dataset, run program as follow:
+To download dataset, just run program as follow:
+
+```
+python pascal_sentence_dataset.py
+```
+
+You can also write code like this:
+
 ```python
 # import
 from pascal_sentence_dataset import PascalSentenceDataSet
@@ -53,7 +60,15 @@ mecab-python 0.996
 
 To use mecab-python, you have to install MeCab in addition.
 
-### Code Sample
+### Usage
+
+To create Japanese & English parallel translation data, just run program as follow:
+
+```
+python pascal_sentence_dataset.py
+```
+
+You can also write code like this:
 
 ```python
 # import
