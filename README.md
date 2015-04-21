@@ -57,8 +57,8 @@ csv_file = 'translations/pascal_sentence_numbers.csv'
 ps = Translation(csv_file)
 # create text data from csv file
 ps.read_csv_and_save_as_txt()
-# create wakati-gaki text data (Japanese text data separated by space between each word) retaining line break
-ps.line_wakati()
+# create wakati-gaki text data (Japanese text data separated by space between each word)
+ps.wakati()
 ```
 
 
