@@ -9,7 +9,7 @@ import MeCab
 from urlparse import urljoin
 import re
 
-# parallel translation (Jaoanese & English) file is needed in this program
+# translation (Jaoanese & English) file is needed in this program
 
 class Translation():
 
@@ -33,35 +33,27 @@ class Translation():
                 continue
 
             # English
+            en_txt_fixed = row[0]
+            # fix text
+            if not en_txt_fixed.endswith("\n"):
+                en_txt_fixed += "\n"
             output_en = 'english/%s.txt' % i
             print "Saving: %s" % output_en
             with open(output_en, 'w') as f:
-                f.write(row[0])
+                f.write(en_txt_fixed)
 
             # Japanese
+            jp_txt = row[1]
+            # fix text
+            jp_txt_fixed = jp_txt.replace("。 ", "。\n")
+            # delete lines which is only tab
+            jp_txt_fixed = re.sub(r"\n[\t]*$", "\n", jp_txt_fixed)
+            if not jp_txt_fixed.endswith("\n"):
+                jp_txt_fixed += "\n"
             output_jp = 'japanese/%s.txt' % i
             print "Saving: %s" % output_jp
             with open(output_jp, 'w') as f:
-                f.write(row[1])
-
-    def wakati(self):
-
-        # directories existence check
-        if not os.path.isdir('wakati'):
-            os.mkdir('wakati')
-
-        files = os.listdir('japanese')
-        for file in files:
-            with open('japanese/' + file) as f1:
-                txt = f1.read()
-
-                tagger = MeCab.Tagger("-Owakati")
-                wakati_result = tagger.parse(txt)
-
-                output_wak = urljoin('wakati/', file)
-                print "Saving: %s" % output_wak
-                with open(output_wak, 'w') as f2:
-                    f2.write(wakati_result)
+                f.write(jp_txt_fixed)
 
     def line_wakati(self):
 
@@ -71,7 +63,7 @@ class Translation():
 
         files = os.listdir('japanese')
         for file in files:
-            with open('japanese_fixed/' + file) as f1:
+            with open('japanese/' + file) as f1:
                 output_wak = urljoin('line_wakati/', file)
                 with open(output_wak, 'w') as f2:
                     for txt in f1.readlines():
@@ -82,39 +74,10 @@ class Translation():
                         print "Saving: %s" % output_wak
                         f2.write(wakati_result)
 
-    def fix_english(self):
-
-        files = os.listdir("english/")
-        for file in files:
-            with open("english/" + file, "r") as f1:
-                txt_fixed = f1.read()
-                # txt_fixed = re.sub(r"(\s|\s[a-zA-Z]+)\.\s", "\\1.\n", txt)
-                if not txt_fixed.endswith("\n"):
-                    txt_fixed += "\n"
-                with open("english_fixed/" + file, "w") as f2:
-                    print "Saving: %s" % file
-                    f2.write(txt_fixed)
-
-    def fix_japanese(self):
-        files = os.listdir("japanese/")
-        for file in files:
-            with open("japanese/" + file, "r") as f1:
-                txt = f1.read()
-                txt_fixed = txt.replace("。 ", "。\n")
-                # delete lines which is only tab
-                txt_fixed = re.sub(r"\n[\t]*$", "\n", txt_fixed)
-                if not txt_fixed.endswith("\n"):
-                    txt_fixed += "\n"
-                with open("japanese_fixed/" + file, "w") as f2:
-                    print "Saving: %s" % file
-                    f2.write(txt_fixed)
 
 if __name__=="__main__":
 
     csv_file = 'translations/pascal_sentence_numbers.csv'
     ps = Translation(csv_file)
-    # ps.read_csv_and_save_as_txt()
-    # ps.wakati()
+    ps.read_csv_and_save_as_txt()
     ps.line_wakati()
-    # ps.fix_english()
-    # ps.fix_japanese()

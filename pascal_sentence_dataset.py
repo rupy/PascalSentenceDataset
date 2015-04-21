@@ -13,9 +13,10 @@ class PascalSentenceDataSet():
 
     DATASET_DIR = 'dataset/'
     SENTENCE_DIR = 'sentence/'
+    PASCAL_SENTENCE_DATASET_URL = 'http://vision.cs.uiuc.edu/pascal-sentences/'
 
-    def __init__(self, url):
-        self.url = url
+    def __init__(self):
+        self.url = PascalSentenceDataSet.PASCAL_SENTENCE_DATASET_URL
 
     def download_images(self):
         dom = PyQuery(self.url)
@@ -34,7 +35,7 @@ class PascalSentenceDataSet():
             if img_src.startswith('http'):
                 img_url = img_src
             else:
-                img_url = urljoin(url, img_src)
+                img_url = urljoin(self.url, img_src)
             if os.path.isfile(output):
                 print "Already downloaded, Skipping: %s" % output
                 continue
@@ -85,8 +86,7 @@ class PascalSentenceDataSet():
 
 if __name__=="__main__":
 
-    url = "http://vision.cs.uiuc.edu/pascal-sentences/"
-    dataset = PascalSentenceDataSet(url)
+    dataset = PascalSentenceDataSet()
     dataset.download_images()
     # dataset.download_sentences()
     # dataset.create_correspondence_data()
