@@ -52,7 +52,7 @@ Correspondence data is the csv data to correspond data id to image data.
 Our lab created Japanese translation of Pascal Sentence Dataset.
 Translation class is the utility to use parallel translation data, "pascal_sentence_numbers.csv".
 You can get text files of two languages by the class.
-To use the class, you have to install depencency libraries as follow:
+To use the class, you have to install depencent libraries as follow:
 
 ```
 mecab-python 0.996
