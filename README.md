@@ -2,7 +2,7 @@
 
 This program is utility to download pascal sentence dataset.
 
-## Instalation
+## Installation
 
 You can install by "git clone" command.
 
